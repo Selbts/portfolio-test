@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Safae El Mamouni — Dior-Style Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dior-black:#000000;
+  --dior-white:#ffffff;
+  --dior-ivory:#f6f1eb;
+  --dior-gold:#c8a75a;
+  --dior-rose:#f1dcdc;
+  --text:#111;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;background:var(--dior-ivory);color:var(--text);line-height:1.55;}
+a{text-decoration:none;color:inherit;transition:all .3s ease;}
+
+/* Top EN/AR */
+.topbar{background:var(--dior-black);color:#fff;font-size:12px;letter-spacing:.06em}
+.topbar .container{display:flex;justify-content:flex-end;gap:8px;padding:6px 20px;align-items:center}
+.topbar button{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:4px 8px;font-size:12px;cursor:pointer}
+.topbar button.active{border-color:#fff}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  background: var(--dior-white);
+  border-bottom: 1px solid #e9e5df;
+  z-index: 10;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: center;
+  flex: 1;
+}
+.menu-icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 20;
+}
+nav{position:absolute;top:100%;left:0;width:200px;background:var(--dior-white);border-top:1px solid #e9e5df;display:none;flex-direction:column;gap:12px;padding:16px;z-index:20;}
+nav a{font-size:14px;padding:6px 0}
+nav.active{display:flex;}
+
+/* Hero */
+.hero{position:relative;height:70vh;display:flex;align-items:center;justify-content:center;background:var(--dior-black);color:#fff;overflow:hidden;}
+.hero img{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:100%;object-fit:cover;opacity:0.5;z-index:0;}
+.hero::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.6));
+  z-index:1;
+}
+.hero-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;text-align:center;display:flex;flex-direction:column;gap:16px;max-width:600px;}
+.hero-content h1{font-family:'Cormorant Garamond', serif;font-weight:600;font-size:38px;line-height:1.2;margin:0;color:#fff;}
+.hero-content p{font-size:16px;margin:0;color:#fdfdfd}
+.hero-content .hero-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+.hero-content .cta{padding:12px 18px;border:none;cursor:pointer;font-size:13px;letter-spacing:.08em;transition:all .3s ease;min-width:140px;color:#fff;}
+.hero-content .cta.primary{background:var(--dior-black);border:1px solid #fff;}
+.hero-content .cta.secondary{background:transparent;border:1px solid #fff;}
+.hero-content .cta.primary:hover{background:var(--dior-gold);color:#000;border-color:var(--dior-gold);}
+.hero-content .cta.secondary:hover{background:var(--dior-gold);color:#000;border-color:var(--dior-gold);}
+
+/* Sections */
+section{padding:56px 20px}
+section h2{font-family:'Cormorant Garamond', serif;font-size:28px;font-weight:600;text-align:center;margin-bottom:24px}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+/* Key Achievements */
+#achievements ul{list-style:none;padding:0;text-align:center;max-width:700px;margin:0 auto;}
+#achievements ul li{margin-bottom:16px;font-size:16px;}
+
+/* Carousel for creations */
+.carousel{position:relative;overflow:hidden;max-width:80%;margin:0 auto;}
+.carousel-inner{display:flex;transition:transform .4s ease-in-out}
+.carousel-item{min-width:100%;flex-shrink:0;display:flex;justify-content:center;align-items:center;gap:16px}
+.carousel img{width:250px;height:250px;object-fit:cover;border:1px solid #e9e5df}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--dior-black);color:#fff;border:none;padding:8px 12px;cursor:pointer;font-size:16px;opacity:.7}
+.carousel-btn.left{left:calc(50% - 250px - 16px);} 
+.carousel-btn.right{right:calc(50% - 250px - 16px);}
+
+/* Skills visual */
+.skills{display:flex;gap:16px;overflow-x:auto;justify-content:center;padding-bottom:16px}
+.skill-circle{flex:0 0 120px;height:120px;border-radius:50%;background:var(--dior-rose);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-size:14px;transition:transform .3s, box-shadow .3s;}
+.skill-circle:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.15);}
+
+/* Compact certifications */
+.compact-list{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.compact-list div{border:1px solid #e9e5df;padding:8px 12px;border-radius:4px;font-size:13px;background:#fff}
+
+/* Contact */
+.contact-form{display:flex;flex-direction:column;gap:12px;max-width:400px;margin:20px auto;}
+.contact-form input, .contact-form textarea{padding:10px;border:1px solid #ccc;border-radius:4px;font-size:14px;width:100%;resize:none;transition:border .3s, box-shadow .3s;}
+.contact-form input:focus, .contact-form textarea:focus{
+  border-color:var(--dior-gold);
+  outline:none;
+  box-shadow:0 0 4px rgba(200,167,90,.4);
+}
+.contact-form button{padding:12px;background:var(--dior-black);color:#fff;border:none;cursor:pointer;font-size:14px;transition:all .3s ease;}
+.contact-form button:hover{background:var(--dior-gold);color:#000}
+.contact-info{display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:14px}
+.contact-info a{color:var(--dior-black);}
+.contact-info a:hover{color:var(--dior-gold);text-decoration:underline;}
+
+/* Footer */
+footer{background:var(--dior-white);border-top:2px solid var(--dior-gold);padding:28px 20px;text-align:center;font-size:12px;color:#666;position:relative;}
+#scrollTop{position:absolute;bottom:16px;right:16px;font-size:20px;cursor:pointer;color:#111;transition:.3s;}
+#scrollTop:hover{color:var(--dior-gold);}
+
+/* Responsive */
+@media(max-width:900px){.hero-content h1{font-size:30px}}
+</style>
+</head>
+<body>
+
+<!-- Top EN/AR -->
+<div class="topbar">
+  <div class="container">
+    <button id="btn-en" class="active">EN</button>
+    <button id="btn-ar">AR</button>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <div class="menu-icon" id="menuToggle">☰</div>
+    <div class="brand">Safae El Mamouni</div>
+  </div>
+  <nav id="menuNav">
+    <a href="#about">About Me</a>
+    <a href="#why-dior">Why Dior</a>
+    <a href="#creations">My Experiences</a>
+    <a href="#achievements">Key Achievements</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <img src="images/hero.jpg" alt="Hero Image">
+  <div class="hero-content">
+    <h1>Aspiring E-Commerce Specialist, Merchandizing & Online Experience</h1>
+    <p>Bilingual & Interactive Beauty & Fragrance Expertise</p>
+    <div class="hero-buttons">
+      <button class="cta primary" onclick="window.open('documents/CV.pdf')">CV</button>
+      <button class="cta secondary" onclick="window.open('documents/LM.pdf')">Lettres de motivation</button>
+      <button class="cta secondary" onclick="window.open('documents/Reference.pdf')">Reference Letter</button>
+    </div>
+  </div>
+</section>
+
+<!-- About Me -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>Graduated in Management & Business Development with proven experience in the beauty industry. Multilingual, adaptable, and passionate about luxury brands and customer engagement.</p>
+</section>
+
+<!-- Why Dior -->
+<section id="why-dior">
+  <h2>Why Dior</h2>
+  <p>Visited Dior galleries, familiar with Middle East market trends, and deeply knowledgeable in fragrances and beauty product positioning.</p>
+  <div class="grid">
+    <img src="images/dior-gallery1.jpg" alt="Dior Gallery 1">
+    <img src="images/dior-gallery2.jpg" alt="Dior Gallery 2">
+    <img src="images/dior-gallery3.jpg" alt="Dior Gallery 3">
+  </div>
+</section>
+
+<!-- Mes Créations -->
+<section id="creations">
+  <h2>My Experiences</h2>
+  <div class="carousel">
+    <div class="carousel-inner" id="carouselInner">
+      <div class="carousel-item">
+        <img src="images/project1.jpg" alt="Creation 1">
+        <img src="images/project2.jpg" alt="Creation 2">
+      </div>
+      <div class="carousel-item">
+        <img src="images/project3.jpg" alt="Creation 3">
+        <img src="images/project4.jpg" alt="Creation 4">
+      </div>
+    </div>
+    <button class="carousel-btn left" id="prev">‹</button>
+    <button class="carousel-btn right" id="next">›</button>
+  </div>
+</section>
+
+<!-- Key Achievements -->
+<section id="achievements">
+  <h2>Key Achievements</h2>
+  <ul>
+    <li>Managed successful campaigns for beauty brands in e-commerce and retail.</li>
+    <li>Led a team of consultants in luxury beauty product launches.</li>
+    <li>Developed cross-cultural strategies in Middle East markets.</li>
+  </ul>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill-circle">Retail Strategy</div>
+    <div class="skill-circle">Fragrance Expertise</div>
+    <div class="skill-circle">Make-up Application</div>
+    <div class="skill-circle">E-commerce Merchandising</div>
+    <div class="skill-circle">Team Leadership</div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications">
+  <h2>Certifications</h2>
+  <div class="cert-grid">
+    <!-- INSIGHT LVMH -->
+    <div class="cert-item">
+      <a href="documents/INSIGHT_LVMH.pdf" target="_blank">
+        <img src="images/insight-lvmh.jpg" alt="INSIGHT LVMH" class="cert-img">
+      </a>
+      <p class="cert-text">Completed mandatory & optional courses at INSIGHT LVMH</p>
+    </div>
+    
+    <!-- TOEIC -->
+    <div class="cert-item">
+      <a href="documents/TOEIC.pdf" target="_blank">
+        <img src="images/toeic.jpg" alt="TOEIC" class="cert-img">
+      </a>
+      <p class="cert-text">Score: 940 — English Proficiency</p>
+    </div>
+    
+    <!-- ESOL / LanguageCert -->
+    <div class="cert-item">
+      <a href="documents/ESOL.pdf" target="_blank">
+        <img src="images/esol.jpg" alt="ESOL / LanguageCert" class="cert-img">
+      </a>
+      <p class="cert-text">Achieved CEFR Level B2</p>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Certifications uniformes */
+.cert-grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.cert-item {
+  background: #fff;
+  border: 1px solid #e9e5df;
+  border-radius: 6px;
+  padding: 16px;
+  width: 220px; /* fixe la largeur pour uniformité */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.cert-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+.cert-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.cert-text {
+  font-size: 13px;
+  color: #666;
+}
+</style>
+
+
+<!-- Contact Form -->
+<section id="contact">
+  <h2>Contact</h2>
+  <form class="contact-form">
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Your message" rows="5" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+  <div class="contact-info">
+    <a href="mailto:safae@gmail.com">mamounisafa@gmail.com</a>
+    <a href="https://www.linkedin.com/in/safae-el-mamouni" target="_blank">LinkedIn</a>
+    <span>— Available to relocate</span>
+  </div>
+</section>
+
+<!-- References -->
+<section id="references">
+  <h2>References</h2>
+  <div class="compact-list">
+    <div>Sarah MOHAMED — E-Commerce Manager France at COTY</div>
+  </div>
+</section>
+
+<footer>
+  Eligible for the VIE (Volontariat International en Entreprises) program.
+  <div id="scrollTop">↑</div>
+</footer>
+
+<script>
+  // Language toggle
+  const btnEN = document.getElementById('btn-en');
+  const btnAR = document.getElementById('btn-ar');
+  const setLang = (lang)=>{
+    const isAR = lang==='ar';
+    document.body.classList.toggle('ar', isAR);
+    btnEN.classList.toggle('active',!isAR);
+    btnAR.classList.toggle('active',isAR);
+  };
+  btnEN.addEventListener('click',()=>setLang('en'));
+  btnAR.addEventListener('click',()=>setLang('ar'));
+
+  // Menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const menuNav = document.getElementById('menuNav');
+  menuToggle.addEventListener('click',()=>menuNav.classList.toggle('active'));
+
+  // Carousel
+  const carouselInner = document.getElementById('carouselInner');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  let idx=0;
+  prev.addEventListener('click',()=>{
+    idx = (idx-1 + carouselInner.children.length)%carouselInner.children.length;
+    carouselInner.style.transform=`translateX(-${idx*100}%)`;
+  });
+  next.addEventListener('click',()=>{
+    idx = (idx+1)%carouselInner.children.length;
+    carouselInner.style.transform=`translateX(-${idx*100}%)`;
+  });
+
+  // Scroll to top
+  const scrollTop = document.getElementById('scrollTop');
+  scrollTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
+
